@@ -1,0 +1,29 @@
+version: '3.1'
+
+services:
+  db:
+    image: mysql:8.1
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    volumes:
+      - "./db/mysql:/var/lib/mysql"
+    environment:
+      MYSQL_ROOT_PASSWORD: rootdb
+      MYSQL_DATABASE: kitten_house
+      MYSQL_USER: admin_kitten
+      MYSQL_PASSWORD: kitten_pwd
+    ports:
+      - 3307:3306
+  
+  kitten_authenticator_svc:
+    container_name: kitten-authenticator
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      MYSQL_ROOT_PASSWORD: rootdb
+      MYSQL_DATABASE: kitten_house
+      MYSQL_USER: admin_kitten
+      MYSQL_PASSWORD: kitten_pwd
+    ports:
+      - 8080:8080
