@@ -1,4 +1,3 @@
-LOCAL_DATABASE := "mysql://admin_kitten:kitten_pwd@tcp(localhost:3306)/kitten_house"
 DATABASE := ${DATABASE}
 
 hello: 
