@@ -21,4 +21,4 @@
 go.work
 
 # Database files
-db/mysql/*
+mysql/
